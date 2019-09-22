@@ -10,10 +10,12 @@ const Container = styled(FlexRow)`
 `;
 const MainPanel = () => {
   const currentMonth = useCurrentMonth();
+  const shouldShowMonthCard =
+    currentMonth &&
+    !(!!currentMonth.inputs.length || !!currentMonth.outputs.length);
   return (
     <Container>
-      {currentMonth &&
-      !(!!currentMonth.inputs.length || !!currentMonth.outputs.length) ? (
+      {shouldShowMonthCard ? (
         <EmptyPanel />
       ) : (
         <MonthCard currentMonth={currentMonth} />

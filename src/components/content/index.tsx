@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import MainPanel from 'components/main-panel';
 import Tabs from 'components/tabs';
 import Footer from 'components/footer';
+import { useHasMonths } from 'store/ducks/months/hooks';
 
 const Container = styled.div`
   display: flex;
@@ -13,9 +14,10 @@ const Container = styled.div`
 `;
 
 const Content: React.FC = () => {
+  const hasMonths = useHasMonths();
   return (
     <Container>
-      <Tabs />
+      {hasMonths && <Tabs />}
       <MainPanel />
       <Footer />
     </Container>
