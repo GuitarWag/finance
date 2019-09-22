@@ -86,6 +86,14 @@ export const i18nptBR = {
     key: 'button.create',
     message: 'Criar a primeira!',
   },
+  CREATE_THE_FIRST_MONTH: {
+    key: 'button.createTheFirstMonth',
+    message: 'Criar o primeiro mês!',
+  },
+  EMPTY_MONTHS_MESSAGE: {
+    key: 'emptyMonth.message',
+    message: 'Você ainda não possui nenhum mês',
+  },
   EMPTY_PANEL_MESSAGE: {
     key: 'emptyPanel.message',
     message: 'Você ainda não possui despesas nem receitas 💰',
@@ -221,9 +229,17 @@ export const i18nesES = {
     key: 'button.create',
     message: '¡Crea el primero!',
   },
+  CREATE_THE_FIRST_MONTH: {
+    key: 'button.createTheFirstMonth',
+    message: 'Criar o primeiro mês!',
+  },
   EMPTY_PANEL_MESSAGE: {
     key: 'emptyPanel.message',
     message: 'Aún no tiene gastos ni ingresos 💰',
+  },
+  EMPTY_MONTHS_MESSAGE: {
+    key: 'emptyMonth.message',
+    message: 'Você ainda não possui nenhum mês',
   },
   TYPE: {
     key: 'type',
