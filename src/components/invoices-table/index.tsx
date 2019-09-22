@@ -204,6 +204,7 @@ const InvoicesTable = ({
                           margin="dense"
                           type="number"
                           label={I18N.NEW_VALUE.message}
+                          autoFocus
                         />
                       </TableCell>
                     </ClickAwayListener>
