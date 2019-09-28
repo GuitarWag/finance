@@ -1,5 +1,5 @@
 export { databaseSecret } from 'firebaseConfig';
-export const BASE_PATH: string = 'https://finance-7cca9.firebaseio.com';
+export const BASE_PATH: string = 'https://finance-a7a60.firebaseio.com/';
 
 export { default as getMonths } from './months/getMonths';
 export { default as getSpecificMonth } from './months/getSpecificMonth';

@@ -2,6 +2,7 @@ import React, { useCallback, ChangeEvent } from 'react';
 import { TextField } from '@material-ui/core';
 import { connect, getIn, FormikValues } from 'formik';
 import { useOnKeyDown } from 'hooks';
+import { useValidationMessage } from '../store/ducks/language/hooks';
 
 interface Props {
   formik?: FormikValues;
@@ -21,11 +22,12 @@ const InputField = ({
   margin = 'normal',
   type = 'text',
   multiline,
-  autoFocus,
+  autoFocus = false,
   InputProps,
 }: Props) => {
   const value = formik && getIn(formik.values, fieldPath, '');
   const error = formik && getIn(formik.errors, fieldPath, false);
+  const { message: errorMessage } = useValidationMessage(error);
   const touched = formik && getIn(formik.touched, fieldPath);
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,10 +47,10 @@ const InputField = ({
         error={error && touched}
         variant="outlined"
         label={label}
-        helperText={error && touched && error}
+        helperText={error && touched && errorMessage}
         onKeyDown={onKeyDown}
         multiline={multiline}
-        autoFocus={autoFocus || false}
+        autoFocus={autoFocus}
         InputProps={InputProps}
       />
     </>

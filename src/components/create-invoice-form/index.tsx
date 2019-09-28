@@ -14,21 +14,12 @@ import { InputField, HorizontalSelect } from 'ui-blocks';
 import { Formik } from 'formik';
 import { now } from 'moment';
 import { NEW_INVOICE_VALIDATION_SCHEMA, FIELDPATHS } from 'validation';
-import {
-  TITLE,
-  CREATE,
-  REVENUE,
-  EXPENSE,
-  VALUE,
-  DESCRIPTION,
-  RELATIVE_TO,
-  MONETARY_SIGN,
-} from 'i18n';
 import SubmitButton from 'components/submit-button';
 import { InvoiceReq } from 'services/types';
 import { useCurrentMonth } from 'store/ducks/current-month/hooks';
 import { useSubmitInvoice } from 'store/ducks/invoices/hooks';
 import useBackDropProps from '../../hooks/useBackdropProps';
+import { useI18N } from 'store/ducks/language/hooks';
 
 interface Props {
   type?: string;
@@ -50,23 +41,6 @@ const ModalContainer = styled(Paper)`
   justify-content: space-between;
 `;
 
-const InputProps = {
-  startAdornment: (
-    <InputAdornment position="start">{MONETARY_SIGN.message}</InputAdornment>
-  ),
-};
-
-const options = [
-  {
-    value: 'inputs',
-    label: REVENUE.message,
-  },
-  {
-    value: 'outputs',
-    label: EXPENSE.message,
-  },
-];
-
 const CreateInvoiceForm = ({
   isVisible,
   toggle,
@@ -87,6 +61,7 @@ const CreateInvoiceForm = ({
     }),
     [currentMonth, type],
   );
+  const I18N = useI18N();
   const submit = useSubmitInvoice();
   const handleSubmit = useCallback(
     (invoiceReq: InvoiceReq) => {
@@ -95,7 +70,30 @@ const CreateInvoiceForm = ({
     },
     [toggle, submit],
   );
+  const InputProps = useMemo(
+    () => ({
+      startAdornment: (
+        <InputAdornment position="start">
+          {I18N.MONETARY_SIGN.message}
+        </InputAdornment>
+      ),
+    }),
+    [I18N],
+  );
 
+  const options = useMemo(
+    () => [
+      {
+        value: 'inputs',
+        label: I18N.REVENUE.message,
+      },
+      {
+        value: 'outputs',
+        label: I18N.EXPENSE.message,
+      },
+    ],
+    [I18N],
+  );
   return (
     <Modal
       ref={anchorRef}
@@ -106,7 +104,7 @@ const CreateInvoiceForm = ({
       <ClickAwayListener onClickAway={toggle}>
         <ModalContainer>
           <Typography variant="h6">
-            {RELATIVE_TO.message}
+            {I18N.RELATIVE_TO.message}
             {currentMonth && currentMonth.title}
           </Typography>
           <Formik
@@ -120,22 +118,22 @@ const CreateInvoiceForm = ({
               <HorizontalSelect fieldPath={FIELDPATHS.TYPE} options={options} />
               <InputField
                 fieldPath={FIELDPATHS.TITLE}
-                label={TITLE.message}
+                label={I18N.TITLE.message}
                 autoFocus
               />
               <InputField
                 fieldPath={FIELDPATHS.VALUE}
-                label={VALUE.message}
+                label={I18N.VALUE.message}
                 type="number"
                 InputProps={InputProps}
               />
               <InputField
                 fieldPath={FIELDPATHS.DESCRIPTION}
-                label={DESCRIPTION.message}
+                label={I18N.DESCRIPTION.message}
                 multiline
               />
               <SubmitButton variant="contained" color="primary" size="large">
-                {CREATE.message}
+                {I18N.CREATE.message}
               </SubmitButton>
             </FormGroup>
           </Formik>

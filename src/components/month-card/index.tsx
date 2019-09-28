@@ -9,7 +9,7 @@ import get from 'lodash/get';
 import CreateInvoiceForm from 'components/create-invoice-form';
 import { useIsVisible } from 'hooks';
 import { useHasMonths } from 'store/ducks/months/hooks';
-import { useI18N } from 'i18n/context';
+import { useI18N } from 'store/ducks/language/hooks';
 import EmptyMonths from 'components/empty-months';
 
 const StyledPaper: StyledComponent<typeof Paper, {}> = styled(Paper)`

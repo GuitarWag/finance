@@ -1,8 +1,8 @@
 import moment from 'moment';
-// @ts-ignore
+// //@ts-ignore
 // import translate from 'translate';
 // import { values } from 'lodash';
-// import { translateApiKey } from '../firebaseConfig';
+// import { translateApiKey, yandexApiKey } from '../firebaseConfig';
 
 export const i18nptBR = {
   FINANCE: {
@@ -291,34 +291,13 @@ export const i18nesES = {
   },
 };
 
-export const {
-  TITLE,
-  VALUE,
-  EDIT,
-  TOOLTIP_ADD_MONTH,
-  MONETARY_SIGN,
-  VALIDATION_MIN_CHAR,
-  VALIDATION_MAX_CHAR,
-  VALIDATION_REQUIRED,
-  VALIDATION_INVALID_FORMAT,
-  VALIDATION_MUST_BE_POSITIVE,
-  CREATE,
-  EMPTY_PANEL_MESSAGE,
-  CREATE_THE_FIRST,
-  EXPENSE,
-  REVENUE,
-  DESCRIPTION,
-  RELATIVE_TO,
-  EXPENSES,
-  REVENUES,
-} = i18nptBR;
-
 // const run = () => {
 //   values(i18nptBR).map(async value =>
 //     console.log(
+//       value.key,
 //       await translate(value.message, {
 //         from: 'pt',
-//         to: 'es',
+//         to: 'en',
 //         key: translateApiKey,
 //       }),
 //     ),

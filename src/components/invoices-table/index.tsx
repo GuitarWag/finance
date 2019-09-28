@@ -34,7 +34,7 @@ import {
   useEditInvoice,
   usePayInvoice,
 } from 'store/ducks/invoices/hooks';
-import { useI18N } from 'i18n/context';
+import { useI18N } from 'store/ducks/language/hooks';
 import { SuccessButton } from 'components/error-success-buttons';
 
 const useStyles = makeStyles(() =>

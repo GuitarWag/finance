@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import I18NContext from 'i18n/context';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import styled, { StyledComponent } from 'styled-components';
 import GoogleButton from 'components/google-button';
 import FacebookButton from 'components/facebook-button';
+import { useI18N } from 'store/ducks/language/hooks';
 
 const Container: StyledComponent<'div', HTMLDivElement> = styled.div`
   position: absolute;
@@ -34,7 +34,7 @@ const ButtonContainer: StyledComponent<'div', HTMLDivElement> = styled.div`
 `;
 
 const ApresentationCard = () => {
-  const I18N = useContext(I18NContext);
+  const I18N = useI18N();
   return (
     <Container>
       <Card>

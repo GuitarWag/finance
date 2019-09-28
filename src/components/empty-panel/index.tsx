@@ -6,10 +6,10 @@ import {
   Button,
   CardActions,
 } from '@material-ui/core';
-import { EMPTY_PANEL_MESSAGE, CREATE_THE_FIRST } from 'i18n';
 import styled, { StyledComponent } from 'styled-components';
 import { useIsVisible } from 'hooks';
 import CreateInvoiceForm from 'components/create-invoice-form';
+import { useI18N } from '../../store/ducks/language/hooks';
 
 const Container: StyledComponent<'div', HTMLDivElement> = styled.div`
   display: flex;
@@ -26,17 +26,17 @@ const Container: StyledComponent<'div', HTMLDivElement> = styled.div`
 
 const EmptyPanel = () => {
   const { ...config } = useIsVisible();
-
+  const I18N = useI18N();
   return (
     <>
       <Container>
         <Card>
           <CardContent>
-            <Typography>{EMPTY_PANEL_MESSAGE.message}</Typography>
+            <Typography>{I18N.EMPTY_PANEL_MESSAGE.message}</Typography>
           </CardContent>
           <CardActions>
             <Button variant="contained" color="primary" onClick={config.toggle}>
-              {CREATE_THE_FIRST.message}
+              {I18N.CREATE_THE_FIRST.message}
             </Button>
           </CardActions>
         </Card>

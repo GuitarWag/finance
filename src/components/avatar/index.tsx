@@ -17,7 +17,7 @@ import {
 import { getSrc } from 'utils';
 import useLogout from './useLogout';
 import { useIsVisible } from 'hooks';
-import { useI18N } from 'i18n/context';
+import { useI18N } from 'store/ducks/language/hooks';
 
 const style = { transformOrigin: 'center bottom' };
 

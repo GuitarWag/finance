@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 import CreateMonthForm from 'components/create-month-form';
 import { useIsVisible } from 'hooks';
-import { useI18N } from 'i18n/context';
+import { useI18N } from 'store/ducks/language/hooks';
 
 const Container = styled.div`
   margin-right: auto;

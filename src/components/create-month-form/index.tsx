@@ -6,11 +6,11 @@ import { InputField, FlexColumn } from 'ui-blocks';
 import { Formik } from 'formik';
 import { now } from 'moment';
 import { NEW_MONTH_VALIDATION_SCHEMA, FIELDPATHS } from 'validation';
-import { TITLE, CREATE } from 'i18n';
 import SubmitButton from 'components/submit-button';
 import { useSubmitMonth } from 'store/ducks/months/hooks';
 import { MonthReq } from 'services/types';
 import { useBackdropProps } from 'hooks';
+import { useI18N } from '../../store/ducks/language/hooks';
 
 const ModalContainer = styled(Paper)`
   position: absolute;
@@ -41,6 +41,7 @@ const CreateMonthForm = ({
 }: UseIsVisibleProps) => {
   const submit = useSubmitMonth();
   const BackdropProps = useBackdropProps();
+  const I18N = useI18N();
   const handleSubmit = useCallback(
     (month: MonthReq) => {
       submit(month);
@@ -65,11 +66,11 @@ const CreateMonthForm = ({
             <FlexColumn>
               <InputField
                 fieldPath={FIELDPATHS.TITLE}
-                label={TITLE.message}
+                label={I18N.TITLE.message}
                 autoFocus
               />
               <SubmitButton variant="contained" color="primary" size="large">
-                {CREATE.message}
+                {I18N.CREATE.message}
               </SubmitButton>
             </FlexColumn>
           </Formik>

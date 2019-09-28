@@ -9,7 +9,7 @@ import {
   Theme,
 } from '@material-ui/core';
 import { LINKS } from 'helper-constants';
-import { useI18N } from 'i18n/context';
+import { useI18N } from 'store/ducks/language/hooks';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

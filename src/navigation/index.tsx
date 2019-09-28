@@ -3,8 +3,6 @@ import { useDispatch } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 import { Creators as AppIntegrationCreators } from 'store/ducks/app-integration';
 import Main from 'pages/main';
-import { I18NProvider } from 'i18n/context';
-import { useLanguage } from '../store/ducks/language/hooks';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
@@ -17,15 +15,14 @@ const GlobalStyle = createGlobalStyle`
 
 const Navigation: React.FC = () => {
   const dispatch = useDispatch();
-  const { messages } = useLanguage();
   useEffect(() => {
     dispatch(AppIntegrationCreators.appStart());
   }, [dispatch]);
   return (
-    <I18NProvider value={messages}>
+    <>
       <Main />
       <GlobalStyle />
-    </I18NProvider>
+    </>
   );
 };
 

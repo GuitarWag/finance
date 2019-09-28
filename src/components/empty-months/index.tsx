@@ -9,7 +9,7 @@ import {
 import styled, { StyledComponent } from 'styled-components';
 import { useIsVisible } from 'hooks';
 import CreateMonthForm from 'components/create-month-form';
-import { useI18N } from 'i18n/context';
+import { useI18N } from 'store/ducks/language/hooks';
 
 const Container: StyledComponent<'div', HTMLDivElement> = styled.div`
   display: flex;
