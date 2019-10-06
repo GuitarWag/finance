@@ -35,7 +35,7 @@ const EmptyPanel = () => {
             <Typography>{I18N.EMPTY_PANEL_MESSAGE.message}</Typography>
           </CardContent>
           <CardActions>
-            <Button variant="contained" color="primary" onClick={config.toggle}>
+            <Button fullWidth variant="contained" color="primary" onClick={config.toggle}>
               {I18N.CREATE_THE_FIRST.message}
             </Button>
           </CardActions>

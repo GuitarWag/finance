@@ -35,7 +35,7 @@ const EmptyMonths = () => {
             <Typography>{I18N.EMPTY_MONTHS_MESSAGE.message}</Typography>
           </CardContent>
           <CardActions>
-            <Button variant="contained" color="primary" onClick={config.toggle}>
+            <Button variant="contained" color="primary" onClick={config.toggle} fullWidth>
               {I18N.CREATE_THE_FIRST_MONTH.message}
             </Button>
           </CardActions>
