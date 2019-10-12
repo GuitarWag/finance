@@ -36,6 +36,7 @@ import {
 } from 'store/ducks/invoices/hooks';
 import { useI18N } from 'store/ducks/language/hooks';
 import { SuccessButton } from 'components/error-success-buttons';
+import SelectRevenueToDebit from '../select-revenue-to-debit';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -211,13 +212,7 @@ const InvoicesTable = ({
                   )}
                   {type === OUTPUTS && (
                     <TableCell align="center">
-                      <SuccessButton
-                        disabled={item.paid}
-                        onClick={() => onClickPay(item)}
-                        variant={!item.paid ? 'outlined' : undefined}
-                      >
-                        {item.paid ? <PaidIcon /> : I18N.PAY.message}
-                      </SuccessButton>
+                      <SelectRevenueToDebit item={item} />
                     </TableCell>
                   )}
                   <TableCell align="center">
