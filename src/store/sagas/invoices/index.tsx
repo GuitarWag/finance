@@ -57,10 +57,10 @@ export function* watchEditInvoiceStart() {
   yield takeLatest(InvoicesTypes.EDIT_INVOICE_START, editInvoiceAsync);
 }
 export function* payInvoiceAsync(action: Action) {
-  const { invoice } = action.payload;
+  const { invoice, payWith } = action.payload;
   const currentUserId = yield select(LoggedUserSelectors.currentUserId);
   const currentMonth = yield select(CurrentMonthSelectors.month);
-  yield payInvoice(invoice, currentUserId);
+  yield payInvoice(invoice, currentUserId, payWith);
   yield updateBalance.onPay(invoice, currentUserId);
   yield delay(500);
   yield put(InvoicesCreators.payInvoiceSuccess());

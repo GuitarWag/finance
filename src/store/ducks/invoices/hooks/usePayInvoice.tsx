@@ -6,8 +6,8 @@ import { Invoice } from 'services/types';
 export default () => {
   const dispatch = useDispatch();
   return useCallback(
-    (invoice: Invoice) => {
-      dispatch(InvoiceCreators.payInvoiceStart(invoice));
+    (invoice: Invoice, payWith: Invoice) => {
+      dispatch(InvoiceCreators.payInvoiceStart(invoice, payWith));
     },
     [dispatch],
   );

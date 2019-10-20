@@ -1,8 +1,4 @@
 import moment from 'moment';
-// //@ts-ignore
-// import translate from 'translate';
-// import { values } from 'lodash';
-// import { translateApiKey, yandexApiKey } from '../firebaseConfig';
 
 export const i18nptBR = {
   FINANCE: {
@@ -13,6 +9,10 @@ export const i18nptBR = {
     key: 'finance.description',
     message:
       'Finance é um Web App, desenvolvido em ReactJS, com o intuito de ajudar as pessoas no gerenciamento do seu dinheiro!',
+  },
+  NONE: {
+    key: 'none',
+    message: 'Nenhum',
   },
   LOGOUT: {
     key: 'button.logout',
@@ -170,6 +170,10 @@ export const i18nesES = {
     message:
       '¡Finance es una aplicación web desarrollada en ReactJS para ayudar a las personas a administrar su dinero!',
   },
+  NONE: {
+    key: 'none',
+    message: 'Ninguno',
+  },
   LOGOUT: {
     key: 'button.logout',
     message: 'Cerrar sesión',
@@ -315,6 +319,7 @@ export const i18nesES = {
     message: 'Saldo actual',
   },
 };
+
 export const i18nenUS = {
   FINANCE: {
     key: 'finance',
@@ -324,6 +329,10 @@ export const i18nenUS = {
     key: 'finance.description',
     message:
       'Finance is a web application developed in ReactJS to help people manage their money!',
+  },
+  NONE: {
+    key: 'none',
+    message: 'None',
   },
   LOGOUT: {
     key: 'button.logout',
@@ -470,20 +479,6 @@ export const i18nenUS = {
     message: 'Current Balance',
   },
 };
-
-// const run = () => {
-//   values(i18nptBR).map(async value =>
-//     console.log(
-//       value.key,
-//       await translate(value.message, {
-//         from: 'pt',
-//         to: 'en',
-//         key: translateApiKey,
-//       }),
-//     ),
-//   );
-// };
-// run();
 
 export const I18N = {
   ptBR: i18nptBR,

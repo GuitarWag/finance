@@ -1,27 +1,12 @@
-import React, { useCallback, useMemo, ReactNode, useState } from 'react';
-import { UseIsVisibleProps } from 'hooks/useIsVisible';
+import React, { useCallback, useState } from 'react';
 import {
   Modal,
   Paper,
   ClickAwayListener,
-  Typography,
-  FormGroup,
-  FormControl,
-  InputLabel,
-  InputAdornment,
-  MenuItem,
-  Backdrop, makeStyles,
 } from '@material-ui/core';
 import styled, { StyledComponent } from 'styled-components';
-import { InputField, HorizontalSelect } from 'ui-blocks';
-import { Formik } from 'formik';
-import { map, get, uniqueId } from 'lodash';
-import { NEW_INVOICE_VALIDATION_SCHEMA, FIELDPATHS } from 'validation';
-import SubmitButton from 'components/submit-button';
-import { InvoiceReq } from 'services/types';
-import { useCurrentMonthInputs } from 'store/ducks/current-month/hooks';
-import { useSubmitInvoice } from 'store/ducks/invoices/hooks';
-import useBackDropProps from 'hooks/useBackdropProps';
+import { Invoice } from 'services/types';
+import { usePayInvoice } from 'store/ducks/invoices/hooks';
 import { useI18N } from 'store/ducks/language/hooks';
 import { SuccessButton } from 'components/error-success-buttons';
 import { MdCheck } from 'react-icons/all';
@@ -59,11 +44,13 @@ const SelectRevenueToDebit = ({
 }: Props) => {
   const [value, setValue] = useState('');
   const { isVisible, anchorRef, toggle } = useIsVisible();
+  const payInvoice = usePayInvoice();
   const I18N = useI18N();
-  const onChange = useCallback((e) => {
-    setValue(e.target.value);
+  const onChange = useCallback((payWith: Invoice) => {
     toggle();
-  }, [setValue, toggle]);
+    payInvoice(item, payWith);
+    setValue(payWith.identifier);
+  }, [toggle, item, payInvoice]);
 
   const handleClick = useCallback(() => {
     toggle();

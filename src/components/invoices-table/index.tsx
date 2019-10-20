@@ -32,10 +32,8 @@ import SubmitButton from 'components/submit-button';
 import {
   useDeleteInvoice,
   useEditInvoice,
-  usePayInvoice,
 } from 'store/ducks/invoices/hooks';
 import { useI18N } from 'store/ducks/language/hooks';
-import { SuccessButton } from 'components/error-success-buttons';
 import SelectRevenueToDebit from '../select-revenue-to-debit';
 
 const useStyles = makeStyles(() =>
@@ -59,11 +57,7 @@ const PaidText: StyledComponent<
   margin-right: 2px;
   align-content: baseline;
 `;
-const PaidIcon: StyledComponent<typeof MdCheck, HTMLOrSVGElement> = styled(
-  MdCheck,
-)`
-  fill: green;
-`;
+
 const Header = styled(FlexRow)`
   padding: 5px;
   box-sizing: border-box;
@@ -92,7 +86,6 @@ const InvoicesTable = ({
   const I18N = useI18N();
   const editInvoice = useEditInvoice();
   const deleteInvoice = useDeleteInvoice();
-  const payInvoice = usePayInvoice();
   const cellClasses = useStyles();
   const onClickAway = useCallback(() => {
     setOnEditIndex(-1);
@@ -107,12 +100,6 @@ const InvoicesTable = ({
       deleteInvoice(invoice);
     },
     [deleteInvoice],
-  );
-  const onClickPay = useCallback(
-    (invoice: Invoice) => {
-      payInvoice(invoice);
-    },
-    [payInvoice],
   );
   const handleSubmit = useCallback(
     (

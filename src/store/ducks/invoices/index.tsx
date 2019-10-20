@@ -146,10 +146,11 @@ export const Creators = {
     type: Types.EDIT_INVOICE_ERROR,
     payload: error,
   }),
-  payInvoiceStart: (invoice: Invoice) => ({
+  payInvoiceStart: (invoice: Invoice, payWith: Invoice) => ({
     type: Types.PAY_INVOICE_START,
     payload: {
       invoice,
+      payWith,
     },
     meta: Metas.showGlobalSpinnerMeta,
   }),

@@ -1,6 +1,6 @@
 // @flow
-import React, { ChangeEvent, ReactNode } from 'react';
-import { map, get, uniqueId } from 'lodash';
+import React, { ReactNode, useCallback } from 'react';
+import { map, get, uniqueId, find } from 'lodash';
 import {
   FormControl,
   InputLabel,
@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import { useI18N } from 'store/ducks/language/hooks';
 import { useCurrentMonthInputs } from '../../store/ducks/current-month/hooks';
+import { Invoice } from '../../services/types';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -23,12 +24,18 @@ const useStyles = makeStyles(() => ({
 interface Props {
   item: any;
   value: string;
-  onChange: (e: ChangeEvent<{ name?: string; value: unknown }>) => void;
+  onChange: (p: Invoice) => void;
 }
 const RevenuesSelect = ({ item, value, onChange }: Props) => {
   const inputs = useCurrentMonthInputs();
   const I18N = useI18N();
   const classes = useStyles();
+
+  const onChangePay = useCallback((e) => {
+    const payWith = find(inputs, (o) => o.identifier === e.target.value);
+    onChange(payWith);
+  }, [inputs, onChange]);
+
   return (
     <FormControl variant="outlined" fullWidth>
       <InputLabel htmlFor="outlined-age-simple">
@@ -36,11 +43,20 @@ const RevenuesSelect = ({ item, value, onChange }: Props) => {
       </InputLabel>
       <Select
         value={value}
-        onChange={onChange}
+        onChange={onChangePay}
         inputProps={{
           name: 'payWith',
         }}
       >
+        <MenuItem
+          value=""
+        >
+          <Container classes={classes}>
+            <Typography>
+              {I18N.NONE.message}
+            </Typography>
+          </Container>
+        </MenuItem>
         {map<typeof inputs, ReactNode>(inputs, i => {
           if (Number(get(i, 'value')) > Number(item.value)) {
             return (
