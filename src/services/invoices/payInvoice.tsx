@@ -13,7 +13,6 @@ const editInvoiceSubPath = (invoice: Invoice, currentUserId: string) => {
   return `/users/${currentUserId}/months/${invoice.relativeMonth}/${invoice.type}/${invoice.identifier}/value`;
 };
 function* payInvoice(invoice: Invoice, currentUserId: string, payWith: Invoice) {
-  const payWithNewValue = yield Number(Number(payWith.value) - Number(invoice.value));
   yield axios.put(
     `${BASE_PATH}${payInvoicePaidSubPath(
       invoice,
@@ -28,12 +27,15 @@ function* payInvoice(invoice: Invoice, currentUserId: string, payWith: Invoice) 
     )}.json?auth=${databaseSecret}`,
     0,
   );
-  yield axios.put(
-    `${BASE_PATH}${editInvoiceSubPath(
-      payWith,
-      currentUserId,
-    )}.json?auth=${databaseSecret}`,
-    payWithNewValue,
-  );
+  if (payWith) {
+    const payWithNewValue = yield Number(Number(payWith.value) - Number(invoice.value));
+    yield axios.put(
+      `${BASE_PATH}${editInvoiceSubPath(
+        payWith,
+        currentUserId,
+      )}.json?auth=${databaseSecret}`,
+      payWithNewValue,
+    );
+  }
 }
 export default payInvoice;
