@@ -1,0 +1,15 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: CREATE A BUILD
+      run: echo yarn build
+    - name: DEPLOY NEW BUILD
+      run: echo firebase deploy
