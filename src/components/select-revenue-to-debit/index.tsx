@@ -49,7 +49,11 @@ const SelectRevenueToDebit = ({
   const onChange = useCallback((payWith: Invoice) => {
     toggle();
     payInvoice(item, payWith);
-    setValue(payWith.identifier);
+    if (payWith) {
+      setValue(payWith.identifier);
+    } else {
+      setValue('');
+    }
   }, [toggle, item, payInvoice]);
 
   const handleClick = useCallback(() => {
