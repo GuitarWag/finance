@@ -61,8 +61,10 @@ export function* payInvoiceAsync(action: Action) {
   const currentUserId = yield select(LoggedUserSelectors.currentUserId);
   const currentMonth = yield select(CurrentMonthSelectors.month);
   yield payInvoice(invoice, currentUserId, payWith);
-  yield updateBalance.onPay(invoice, currentUserId);
-  yield delay(500);
+  if (!payWith) {
+    yield updateBalance.onPay(invoice, currentUserId);
+    yield delay(500);
+  }
   yield put(InvoicesCreators.payInvoiceSuccess());
   yield put(MonthsCreators.getMonthsStart());
   yield put(CurrentMonthCreators.setCurrentMonthStart(currentMonth));
