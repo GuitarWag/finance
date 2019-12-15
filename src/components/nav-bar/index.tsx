@@ -3,6 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import { Toolbar, IconButton } from '@material-ui/core';
 import Avatar from 'components/avatar';
 import NewMonthButton from 'components/new-month-button';
+import HideValuesButton from 'components/hide-values-button';
 import { MdMenu } from 'react-icons/md';
 import styled from 'styled-components';
 import LanguageSelector from '../language-selector';
@@ -22,6 +23,7 @@ const NavBar = () => {
           <MdMenu/>
         </IconButton>
         {user && <NewMonthButton/>}
+        {user && <HideValuesButton/>}
         <LanguageSelector/>
         <Avatar/>
       </Container>

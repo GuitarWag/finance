@@ -54,16 +54,12 @@ const SelectRevenueToDebit = ({
     } else {
       setValue('');
     }
-  }, [toggle, item, payInvoice]);
-
-  const handleClick = useCallback(() => {
-    toggle();
-  }, [toggle]);
+  }, [toggle, item, payInvoice, setValue]);
   return (
     <>
       <SuccessButton
       disabled={item.paid}
-      onClick={handleClick}
+      onClick={toggle}
       variant={!item.paid ? 'outlined' : undefined}
     >
       {item.paid ? <PaidIcon /> : I18N.PAY.message}

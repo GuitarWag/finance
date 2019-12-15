@@ -58,7 +58,7 @@ const RevenuesSelect = ({ item, value, onChange }: Props) => {
           </Container>
         </MenuItem>
         {map<typeof inputs, ReactNode>(inputs, i => {
-          if (Number(get(i, 'value')) > Number(item.value)) {
+          if (Number(get(i, 'value')) >= Number(item.value)) {
             return (
               <MenuItem
                 value={get(i, 'identifier')}

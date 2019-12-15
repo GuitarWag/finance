@@ -189,7 +189,10 @@ export default {
       );
     }
   },
-  onPay: function* onPay(invoiceReq: InvoiceReq, currentUserId: string) {
+
+  onPay: function* onPay(
+    invoiceReq: InvoiceReq, currentUserId: string, payWith: InvoiceReq | void,
+    ) {
     const _balance = yield axios.get(
       `${BASE_PATH}${updateBalanceSubPath(
         invoiceReq,
@@ -211,37 +214,29 @@ export default {
       )}.json?auth=${databaseSecret}`,
     );
     const totalOuts = _totalOuts.data;
-
-    if (invoiceReq.type === 'inputs') {
-      yield axios.put(
-        `${BASE_PATH}${updateTotalInsSubPath(
-          invoiceReq,
-          currentUserId,
-        )}.json?auth=${databaseSecret}`,
-        totalIns - Number(invoiceReq.value),
-      );
-      yield axios.put(
-        `${BASE_PATH}${updateBalanceSubPath(
-          invoiceReq,
-          currentUserId,
-        )}.json?auth=${databaseSecret}`,
-        balance - Number(invoiceReq.value),
-      );
-    } else {
-      yield axios.put(
+    yield axios.put(
         `${BASE_PATH}${updateTotalOutsSubPath(
           invoiceReq,
           currentUserId,
         )}.json?auth=${databaseSecret}`,
         totalOuts - Number(invoiceReq.value),
       );
+    if (!payWith) {
       yield axios.put(
-        `${BASE_PATH}${updateBalanceSubPath(
-          invoiceReq,
-          currentUserId,
-        )}.json?auth=${databaseSecret}`,
-        balance + Number(invoiceReq.value),
-      );
+          `${BASE_PATH}${updateBalanceSubPath(
+            invoiceReq,
+            currentUserId,
+          )}.json?auth=${databaseSecret}`,
+          balance + Number(invoiceReq.value),
+        );
+    } else {
+      yield axios.put(
+          `${BASE_PATH}${updateTotalInsSubPath(
+            invoiceReq,
+            currentUserId,
+          )}.json?auth=${databaseSecret}`,
+          totalIns - Number(invoiceReq.value),
+        );
     }
   },
 };

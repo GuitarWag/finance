@@ -20,7 +20,7 @@ import {
   MdDelete,
   MdArrowBack,
   MdArrowForward,
-  MdCheck,
+  MdCheck, MdVisibilityOff,
 } from 'react-icons/md';
 import { Invoice } from 'services/types';
 import uuid from 'uuid';
@@ -35,6 +35,8 @@ import {
 } from 'store/ducks/invoices/hooks';
 import { useI18N } from 'store/ducks/language/hooks';
 import SelectRevenueToDebit from '../select-revenue-to-debit';
+import Value from './value';
+import { useHideValuesContext } from '../hide-values';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -87,6 +89,7 @@ const InvoicesTable = ({
   const editInvoice = useEditInvoice();
   const deleteInvoice = useDeleteInvoice();
   const cellClasses = useStyles();
+  const { hideValues, show } = useHideValuesContext();
   const onClickAway = useCallback(() => {
     setOnEditIndex(-1);
   }, []);
@@ -171,17 +174,17 @@ const InvoicesTable = ({
                     <TableCell align="left">
                       {item.paid ? (
                         <FlexRow>
-                          <PaidText variant="caption">
-                            {I18N.MONETARY_SIGN.message} {item.paid}
-                          </PaidText>
+                          {!hideValues
+                            ? <PaidText variant="caption">
+                              {I18N.MONETARY_SIGN.message} {item.paid}
+                              </PaidText>
+                          : <MdVisibilityOff onClick={show} /> }
                           <Typography>
                             {I18N.MONETARY_SIGN.message} 0
                           </Typography>
                         </FlexRow>
                       ) : (
-                        <Typography>
-                          {I18N.MONETARY_SIGN.message} {item.value}
-                        </Typography>
+                        <Value value={item.value}/>
                       )}
                     </TableCell>
                   ) : (
@@ -226,10 +229,12 @@ const InvoicesTable = ({
               <Typography>{I18N.TOTAL.message}</Typography>
             </TableCell>
             <TableCell>
-              <Typography color={type === INPUTS ? 'primary' : 'error'}>
-                {I18N.MONETARY_SIGN.message}
-                {total}
-              </Typography>
+              {hideValues ? <MdVisibilityOff onClick={show}/> :
+                <Typography color={type === INPUTS ? 'primary' : 'error'}>
+                  {I18N.MONETARY_SIGN.message}
+                  {total}
+                </Typography>
+              }
             </TableCell>
             {!(data.length < MAX + 1) ? (
               <>

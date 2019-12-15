@@ -158,6 +158,14 @@ export const i18nptBR = {
     key: 'updatedValue',
     message: 'Saldo atual',
   },
+  HIDE_VALUES: {
+    key: 'hideValues',
+    message: 'Esconder valores',
+  },
+  SHOW_VALUES: {
+    key: 'showValues',
+    message: 'Mostrar valores',
+  },
 };
 
 export const i18nesES = {
@@ -318,6 +326,14 @@ export const i18nesES = {
     key: 'updatedValue',
     message: 'Saldo actual',
   },
+  HIDE_VALUES: {
+    key: 'hideValues',
+    message: 'Ocultar valores',
+  },
+  SHOW_VALUES: {
+    key: 'showValues',
+    message: 'Mostrar valores',
+  },
 };
 
 export const i18nenUS = {
@@ -477,6 +493,14 @@ export const i18nenUS = {
   UPDATED_VALUE: {
     key: 'updatedValue',
     message: 'Current Balance',
+  },
+  HIDE_VALUES: {
+    key: 'hideValues',
+    message: 'Hide values',
+  },
+  SHOW_VALUES: {
+    key: 'showValues',
+    message: 'Show values',
   },
 };
 
