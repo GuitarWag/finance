@@ -21,7 +21,7 @@
     "firebase-tools": "^7.6.1",
     "formik": "^1.5.8",
     "google-translate": "^2.3.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
