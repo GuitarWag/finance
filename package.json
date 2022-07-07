@@ -22,7 +22,7 @@
     "formik": "^1.5.8",
     "google-translate": "^2.3.0",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-icons": "^3.7.0",
